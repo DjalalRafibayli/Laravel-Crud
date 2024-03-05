@@ -7,7 +7,16 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Product Create</h1>
+    <h1>Product Edit</h1>
+    @if (session()->has('success'))
+    <div>
+        {{session('success')}}
+    </div>
+    @else
+    <div>
+        An Error Ocured
+    </div>
+    @endif
     @if ($errors->any())
     <ul>
         @foreach ($errors->all() as $error)
@@ -15,16 +24,16 @@
         @endforeach
     </ul>
     @endif
-    <form method="post" action="{{route('products.store')}}">
+    <form method="post" action="{{route('products.update',['product' => $product])}}">
         @csrf
-        @method('post')
+        @method('put')
         <div>
             <label>Name</label>
-            <input type="text" name="name" placeholder="Name"/>
+            <input type="text" name="name" placeholder="Name" value="{{$product->name}}"/>
         </div>
         <div>
             <label>Qunatity</label>
-            <input type="number" name="quantity" placeholder="Qunatity"/>
+            <input type="number" name="Quantity" placeholder="Quantity" value="{{$product->Quantity}}"/>
         </div>
         <div>
             <input type="submit" value="Submit"/>

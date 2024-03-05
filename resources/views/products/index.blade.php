@@ -9,5 +9,33 @@
 <body>
     <h1>Products</h1>
     <div>Index</div>
+    <table>
+        <thead>
+            <tr>
+                <td>ID</td>
+                <td>Name</td>
+                <td>Quantity</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($products as $product)
+                <tr>
+                    <td>{{$product->id}}</td>
+                    <td>{{$product->name}}</td>
+                    <td>{{$product->Quantity}}</td>
+                    <td>
+                        <a href="{{route('products.edit', ['product' => $product])}}">Edit</a>
+                    </td>
+                    <td>
+                        <form method="post" action="{{route('products.delete', ['product' => $product])}}">
+                            @csrf
+                            @method('delete')
+                            <input type="submit" value="Delete" />
+                        </form>
+                    </td>
+                </tr>    
+            @endforeach
+        </tbody>
+    </table>
 </body>
 </html>

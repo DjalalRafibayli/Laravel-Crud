@@ -7,16 +7,17 @@ use App\Models\Product;
 
 class ProductController extends Controller
 {
-   public function Index()
-   {
-        return view('products.index');
-   }
-   public function Create()
-   {
+    public function Index()
+    {
+        $products = Product::all();
+        return view('products.index', ['products' => $products]);
+    }
+    public function Create()
+    {
         return view('products.create');
-   }
-   public function Store(Request $request)
-   {
+    }
+    public function Store(Request $request)
+    {
         $data = $request->validate([
             'name' => 'required',
             'quantity' => 'required|numeric',
@@ -25,5 +26,24 @@ class ProductController extends Controller
         $newProduct = Product::create($data);
 
         return redirect(route('products.index'));
-   }
+    }
+    public function edit(Product $product)
+    {
+        return view('products.edit', ['product' => $product]);
+    }
+    public function update(Product $product, Request $request)
+    {
+        $data = $request->validate([
+            'name' => 'required',
+            'Quantity' => 'required|numeric',
+        ]);
+
+        $product->update($data);
+        return redirect(route('products.index'))->with('sucess','Product update Successfly');
+    }
+    
+    public function delete(Product $product){
+        $product->delete();
+        return redirect(route('products.index'))->with('success', 'Product deleted Succesffully');
+    }
 }
