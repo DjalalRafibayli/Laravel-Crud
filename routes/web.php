@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\ProductController;
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +24,5 @@ Route::post('/product', [ProductController::class , 'Store'])->name('products.st
 Route::get('/product/{product}/edit', [ProductController::class , 'edit'])->name('products.edit'); 
 Route::put('/product/{product}/update', [ProductController::class , 'update'])->name('products.update'); 
 Route::delete('/product/{product}/delete', [ProductController::class , 'delete'])->name('products.delete'); 
+
+Route::get('/product/rawquery', [ProductController::class , 'RawQuery'])->name('products.rawquery');

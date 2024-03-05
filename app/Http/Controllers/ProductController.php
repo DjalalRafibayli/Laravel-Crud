@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
@@ -45,5 +46,10 @@ class ProductController extends Controller
     public function delete(Product $product){
         $product->delete();
         return redirect(route('products.index'))->with('success', 'Product deleted Succesffully');
+    }
+    public function RawQuery()
+    {
+        $products = DB::select("SELECT * FROM products");
+        return view('products.rawquery', ['products' => $products]);
     }
 }
