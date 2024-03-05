@@ -52,4 +52,8 @@ class ProductController extends Controller
         $products = DB::select("SELECT * FROM products");
         return view('products.rawquery', ['products' => $products]);
     }
+    public function RawEdit($id)
+    {
+        return view('products.raw_edit', ['product' => $product]);        
+    }
 }

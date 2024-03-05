@@ -24,10 +24,10 @@
                     <td>{{$product->name}}</td>
                     <td>{{$product->Quantity}}</td>
                     <td>
-                        <a href="{{route('products.edit', ['product' =>$product->id])}}">Edit</a>
+                        <a href="{{route('products.raw_edit', ['product' =>$product->id])}}">Edit</a>
                     </td>
                     <td>
-                        <form method="post" action="{{route('products.delete', ['product' => $product->id])}}">
+                        <form method="post" action="{{route('products.raw_delete', ['product' => $product->id])}}">
                             @csrf
                             @method('delete')
                             <input type="submit" value="Delete" />
