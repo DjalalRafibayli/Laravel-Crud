@@ -27,5 +27,5 @@ Route::delete('/product/{product}/delete', [ProductController::class , 'delete']
 
 Route::get('/product/rawquery', [ProductController::class , 'RawQuery'])->name('products.rawquery');
 Route::get('/product/{product}/rawedit', [ProductController::class , 'RawEdit'])->name('products.raw_edit'); 
-Route::put('/product/{product}/rawupdate', [ProductController::class , 'RawUpdate'])->name('products.raw_update'); 
+Route::put('/product/{id}/rawedit', [ProductController::class , 'RawUpdate'])->name('products.raw_update'); 
 Route::delete('/product/{product}/rawdelete', [ProductController::class , 'RawDelete'])->name('products.raw_delete'); 

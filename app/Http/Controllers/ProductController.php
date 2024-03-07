@@ -54,6 +54,25 @@ class ProductController extends Controller
     }
     public function RawEdit($id)
     {
-        return view('products.raw_edit', ['product' => $product]);        
+        // $products = DB::select("SELECT * FROM products")->firstOrDefault;
+        //$product = Product::find($id); // 1 ci variant
+        $sql = "SELECT * FROM products WHERE id = :id";
+        $product = DB::select($sql, ['id' => $id]);
+        $product = reset($product);
+
+
+        return view('products.raw_edit', ['product' => $product]);
+    }
+    public function RawUpdate(Request $request,$id)
+    {
+        // dd($request);
+        $sql = "UPDATE products SET name = :name , Quantity = :quantity where id = :id";
+        DB::update($sql, 
+                    [
+                        'id' => $id,
+                        'name' => $request->name,
+                        'quantity' => $request->Quantity
+                    ]);
+        return redirect(route('products.rawquery'))->with('sucess','Product update Successfly');
     }
 }
